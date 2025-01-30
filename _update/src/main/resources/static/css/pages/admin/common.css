@@ -1,0 +1,20 @@
+/* 예시 CSS 스타일 */
+table {
+    width: 1500px;
+    border-collapse: collapse;
+    background-color: #c75e5e;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+h2 {
+    margin-bottom: 20px;
+}

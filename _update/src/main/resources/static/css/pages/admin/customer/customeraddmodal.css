@@ -1,0 +1,85 @@
+/* 고객 추가 모달 (#customeraddModal) 배경 */
+#customeraddModal {
+    display: none; /* 기본적으로 숨기기 */
+    position: fixed; /* 화면에 고정 */
+    z-index: 1000; /* 화면 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* 반투명 배경 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    overflow: hidden; /* 화면 넘어가는 내용은 숨기기 */
+}
+
+/* 고객 추가 모달 (#customeraddModal) 콘텐츠 */
+#customeraddModal .modal-content {
+    background-color: #fff; /* 흰색 배경 */
+    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 30px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+    width: 90%; /* 너비 설정 */
+    max-width: 600px; /* 최대 너비 600px */
+    transition: transform 0.3s ease-in-out; /* 애니메이션 효과 */
+}
+
+#customeraddModal .modal-content h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* 고객 추가 모달 닫기 버튼 */
+#customeraddModal .close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#customeraddModal .close-btn:hover,
+#customeraddModal .close-btn:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+/* 고객 추가 모달 입력 필드 스타일 */
+#customeraddModal .modal-content input[type="text"],
+#customeraddModal .modal-content input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+#customeraddModal .modal-content input[type="text"]:focus,
+#customeraddModal .modal-content input[type="email"]:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* 고객 추가 모달 내 버튼 스타일 */
+#customeraddModal .modal-content button[type="submit"] {
+    background-color: #007bff; /* 파란색 배경 */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#customeraddModal .modal-content button[type="submit"]:hover {
+    background-color: #0056b3; /* 버튼에 마우스 오버 시 색상 변화 */
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title> 푸터영역 </title>
+</head>
+
+<!-- footerFragment 선언 -->
+<th:block th:fragment="footerFragment">
+  <footer class="footer">
+
+
+    <div class="footer-top">
+      <div class="map" id="fmap"></div>
+
+      <div class="footer-top-container">
+        <div class="intro-box">
+          <h1>PEOPLE WAXING</h1>
+          <h3>The Standard of Waxing, People Waxing</h3>
+          <a>피플왁싱은 '기본'으로 '완벽'에 도달합니다.<br>
+            보드럽고 깨끗한 피부, 피플왁싱에서 시작하세요. </a>
+        </div>
+
+        <div class="info-box">
+          <div class="info-box-item">
+            <h3>Shop</h3>
+            <a>피플왁싱</a>
+          </div>
+          <div class="info-box-item">
+            <h3>Tel</h3>
+            <a>02-9085-5391</a>
+          </div>
+          <div class="info-box-item">
+            <h3>Contact</h3>
+            <a>평일: am10:00 ~ pm09:00(야)<br>
+               주말: am09:00 ~ pm03:00(주)<br><br>
+               *예약없을 시 조기마감<br>
+               *일요일 공휴일 휴일 </a>
+          </div>
+          <div class="info-box-item">
+            <h3>Address</h3>
+            <a>서울 강남구 학동로 231 청청빌딩 5층<br>
+               (청담동 23-13,청청빌딩)</a>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <div class="nav-item">
+            <a href="/directions">오시는 길</a>
+            <a href="#">피플왁싱</a>
+          </div>
+          <div class="nav-item">
+            <a href="/reservaion">온라인예약</a>
+            <a href="#">주소복사</a>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-bottom-link">
+        <a>이용약관</a>
+        <a>개인정보취급방침</a>
+        <a>비급여 수가표</a>
+        <a>제증명 수수료</a>
+      </div>
+      <div class="footer-bottom-item">
+        <a>상호명 : 피플왁싱 ㅣ Tel. 02.9085.5391 ㅣ Fax. 02.9085.5391 ㅣ 사업자등록번호: 888-88-88888 ㅣ 대표 : 윤정환</a>
+        <a> 주소 : 서울시 강남구 학동로 231 청청빌딩 5층 (청담동 23-13,청청빌딩) </a>
+        <a>Copyright(c) 2024 PEOPLE WAXING. All rights reserved.</a>
+      </div>
+
+    </div>
+
+  </footer>
+</th:block>
+<!-- footerFragment 선언 -->
+</html>

@@ -1,0 +1,15 @@
+.pages-title {
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100%; /* 부모 요소의 높이에 맞춤 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding: 80px;
+}
+
+.pages-title h1{
+    font-size: 50px;
+}
+
+.pages-title a{
+    font-size: 20px;
+}

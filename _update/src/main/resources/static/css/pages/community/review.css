@@ -1,0 +1,101 @@
+/* board.css */
+
+table a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+/* 게시판 영역 스타일 */
+
+.board {
+    display: flex;
+    justify-content: center;  /* 수평 가운데 정렬 */
+
+}
+
+.board-list {
+    width: 1200px;
+
+}
+
+/* 테이블 스타일 */
+.board-list table {
+    width: 100%;
+    border-collapse: collapse;
+
+    border-radius: 5px;
+    overflow: hidden;
+
+}
+
+/*--------------------*/
+
+/* 각 td의 기본 스타일 */
+.board-list td {
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+    color: #5a5a5a;
+}
+
+/* 번호는 왼쪽 정렬 */
+.board-list td:first-child {
+    padding-left: 40px;
+    text-align: left;
+    width: 5%;  /* 번호 열 고정 너비 */
+}
+
+/* 이름은 왼쪽 정렬 */
+.board-list td:nth-child(2) {
+    text-align: center;
+    width: 10%;
+}
+
+/* 제목은 왼쪽 정렬 */
+.board-list td:nth-child(3) {
+    text-align: left;
+    width: 55%;  /* 제목 열 고정 너비 */
+}
+
+/* 작성일은 오른쪽 정렬 */
+.board-list td:nth-child(4) {
+    padding-right: 40px;
+    text-align: right;
+    width: 20%;  /* 작성일 열 고정 너비 */
+}
+
+/*--------------------*/
+
+/* 헤더 스타일 */
+.board-list th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+
+
+/* 테이블 행 호버 스타일 */
+.board-list tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* '새 게시글 작성' 링크 스타일 */
+.create-post-link {
+    display: block;
+    width: 100px;
+
+    margin-top: 30px;
+    margin-left: auto; /* 좌측 여백 자동 */
+    margin-right: 0;   /* 우측 여백 0 */
+
+    padding: 8px 8px;
+    background-color: #c75e5e;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    font-weight: bold;
+}
+

@@ -1,0 +1,171 @@
+.content{
+    padding-bottom: 100px;
+}
+
+.post-body {
+    display: flex;
+    justify-content: center;  /* 수평 가운데 정렬 */
+
+}
+
+.form-box {
+    width: 1200px;
+
+}
+
+
+
+.input-group{
+    display: flex;
+    gap: 20px; /* 항목 간격 조정 */
+    padding: 20px;
+    border-bottom: 1px solid silver; /* 그룹 간의 구분선 */
+    align-items: center; /* 항목 수직 중앙 정렬 */
+}
+
+.input-group .input-item {
+    display: flex;
+    align-items: center; /* 항목들을 수평으로 정렬 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    width: 100%;
+    height: 100%;
+}
+
+.input-item > label {
+    min-width: 130px; /* 레이블의 고정 너비 설정 */
+    text-align: left;
+    font-weight: bold;
+    margin-right: 10px; /* 라벨과 입력 요소 사이의 간격을 조정 */
+}
+
+.input-item > input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 60px;
+    border: 1px solid #585858;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-item > select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    height: 60px;
+    border: 1px solid #585858;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/*이미지 첨부하면 텍스트에 바로 뜨게*/
+/* --------------------------- */
+.input-item #content {
+    width: 100%;
+    height: 350px; /* 높이는 고정되어 있으면, 그에 맞춰서 이미지 비율이 조정됩니다 */
+    padding: 20px;
+    border: 1px solid #585858;
+    border-radius: 5px;
+    overflow: auto;
+    word-wrap: break-word;
+    box-sizing: border-box; /* 패딩을 포함한 크기 계산 */
+}
+
+.input-item #additionalText img {
+    max-width: 100%;  /* 부모 요소의 너비에 맞게 이미지 크기 설정 */
+    height: auto; /* 비율을 유지하면서 높이는 자동으로 조정 */
+    display: block; /* 이미지가 블록 요소로 표시되도록 설정 */
+    box-sizing: content-box; /* border가 외부로 적용되도록 설정 */
+}
+
+.input-item #additionalText img:hover {
+    outline: 2px solid #adadad; /* border 대신 outline 사용 */
+}
+/* --------------------------- */
+
+.submit-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px; /*-- 그룹간의 간격 동일하게 --*/
+}
+
+.submit-button {
+    background-color: #404040; /* 초록색 배경 */
+    color: white; /* 흰색 글씨 */
+    padding: 20px 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 200px;
+    text-align: center; /* 텍스트 중앙 정렬 */
+}
+/* 파일첨부버튼 */
+/* --------------------------- */
+
+.file-upload-label {
+    height: 60px;
+    display: flex; /* flexbox로 설정 */
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    background-color: #c75e5e;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    border: none;
+    margin-right: 10px; /* 버튼과 인풋 사이에 간격 */
+}
+
+#imageInput {
+    width: 250px;
+    margin-right: 10px; /* 파일 첨부 버튼과 간격을 주기 위한 마진 */
+}
+
+input[type="file"] {
+    display: none; /* 기본 파일 입력 숨기기 */
+}
+
+
+/* 파일 목록 스타일 */
+.file-list {
+
+    display: flex;
+    margin-top: 10px;
+}
+
+.file-item {
+    color: #c75e5e;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.file-item .delete-btn {
+    margin-left: 2px;
+    color: white;
+    background-color: #c75e5e;
+    border: none;
+    padding: 3px 6px;
+    font-size: 12px;
+    cursor: pointer;
+
+}
+
+
+/* no-flex 클래스가 적용된 .input-group에 대해 flex 속성 제거 */
+.input-group.no-flex {
+    display: block;
+    padding: 30px; /*-- 그룹간의 간격 --*/
+    border-bottom: 1px solid #ddd;
+}
+
+.input-group.no-flex .input-item {
+    display: flex;
+    align-items: center; /* 항목들을 수평으로 정렬 */
+    justify-content: flex-start; /* 왼쪽 정렬 */
+    width: 100%;
+    height: 100%;
+}

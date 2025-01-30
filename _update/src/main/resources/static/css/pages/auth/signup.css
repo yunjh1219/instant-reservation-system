@@ -1,0 +1,45 @@
+/* 네비게이션 */
+/*-------------*/
+.signup-header-nav {
+
+    padding-bottom: 30px;
+    bottom: 0px; /* 네비게이션을 이미지 컨테이너의 하단에 위치 */
+    width: 100%; /* 네비게이션이 이미지 컨테이너의 너비를 가득 채우도록 설정 */
+    text-align: center;
+}
+
+.signup-header-nav ul {
+    display: flex; /* 수평 일열로 */
+    list-style: none;
+    justify-content: center;
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+}
+
+.signup-header-nav li {
+    margin: 0; /* 링크들 사이의 간격 제거 */
+}
+
+.signup-header-nav a {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #d1cccc;
+    color: #424141;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 35px;
+    transition: all 0.3s;
+    margin: 0px 10px; /* 링크들 사이의 간격 제거 */
+
+}
+
+
+
+
+.signup-header-nav a.active {
+    background-color: #1f1e1e;
+    color: white;
+}
+
+
+/*-------------*/

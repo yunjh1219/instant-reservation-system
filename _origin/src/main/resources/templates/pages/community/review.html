@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>main homepage</title>
+  <!--공통-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/community/commonness.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/commonness.js}"></script>
+  <!--개인-->
+  <link rel="stylesheet" th:inline="css"  th:href="@{/css/pages/community/review.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/review.js}"></script>
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="commu-header">
+      <div class="image-container">
+        <img src="/img/community/banner.jpg" alt="이미지 설명">
+      </div>
+      <nav class="commu-header-nav">
+        <ul>
+          <li><a th:href="@{/api/event/activelist}" class="#">이벤트</a></li>
+          <li><a th:href="@{/api/news/list}" class="#">피플소식</a></li>
+          <li><a th:href="@{/api/review/list}" class="active">시술후기</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="commu-title">
+      <h1>리뷰</h1>
+      <a>REVIEW</a>
+    </div>
+    <div class="board">
+      <div class="board-list">
+        <table>
+          <thead>
+          </thead>
+          <tbody>
+          <!-- 게시글 목록 반복 -->
+          <tr th:each="review : ${reviewPage.content}">
+            <td th:text="${review.id}"></td> <!-- 번호 -->
+            <td th:text="${review.treatment}"></td>
+            <td><!-- 제목 -->
+              <a th:href="@{/review/detail/{id}(id=${review.id})}" th:text="${review.title}"></a>
+            </td>
+            <td th:text="${#temporals.format(review.createdAt, 'yyyy-MM-dd')}"></td> <!-- 작성일 -->
+          </tr>
+          </tbody>
+        </table>
+        <a href="/writereview" class="create-post-link" sec:authorize="hasRole('ROLE_ADMIN')">글쓰기</a>
+        <!-- 페이지네이션 -->
+<!--        <div class="pagination">-->
+<!--          <a href="#">&lt;</a>  &lt;!&ndash; 이전 페이지 버튼 &ndash;&gt;-->
+<!--          <a href="#" class="active">1</a>  &lt;!&ndash; 현재 페이지 &ndash;&gt;-->
+<!--          <a href="#">&gt;</a>  &lt;!&ndash; 다음 페이지 버튼 &ndash;&gt;-->
+<!--        </div>-->
+
+        <div class="pagination">
+          <!-- 이전 페이지 버튼 -->
+          <a th:href="@{/review/list(page=${reviewPage.number - 1})}"
+             th:classappend="${reviewPage.hasPrevious()} ? '' : 'disabled'"
+             th:if="${reviewPage.hasPrevious()}">&lt;</a>
+          <a class="disabled" th:unless="${reviewPage.hasPrevious()}">&lt;</a>
+
+          <!-- 현재 페이지 번호 표시 -->
+          <a class="current-page" th:text="${reviewPage.number + 1}"></a>
+
+          <!-- 다음 페이지 버튼 -->
+          <a th:href="@{/review/list(page=${reviewPage.number + 1})}"
+             th:classappend="${reviewPage.hasNext()} ? '' : 'disabled'"
+             th:if="${reviewPage.hasNext()}">&gt;</a>
+          <a class="disabled" th:unless="${reviewPage.hasNext()}">&gt;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</th:block>
+</html>

@@ -1,0 +1,155 @@
+/* board.css */
+
+/*TITLE*/
+/*----------------------*/
+.commu-title2 {
+    position: relative;
+
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100%; /* 부모 요소의 높이에 맞춤 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    padding-top: 80px;
+    padding-bottom: 30px;
+
+
+    margin: 0 auto; /* 좌우 여백을 자동으로 설정하여 중앙 정렬 */
+    width: 1200px;
+}
+
+.commu-title2 h1{
+    font-size: 50px;
+}
+
+.commu-title2 a{
+    font-size: 20px;
+    color: #c75e5e;
+}
+/*----------------------*/
+
+
+table a{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+/* 게시판 영역 스타일 */
+.board {
+    display: flex;
+    justify-content: center;  /* 수평 가운데 정렬 */
+}
+
+.board-list {
+    width: 1200px;
+
+}
+
+.event-board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* 아이템을 양쪽에 배치 */
+}
+
+.event-board-list {
+    flex: 1 1 calc(50% - 30px); /* 한 줄에 2개씩 배치되도록 설정, 간격 고려 */
+    box-sizing: border-box; /* 패딩과 보더가 전체 크기에 포함되도록 설정 */
+    max-width: calc(50% - 30px); /* 최대 너비 설정 */
+    margin-bottom: 20px;
+}
+
+.eventImg {
+    width: 100%; /* 가로 크기를 부모 요소의 100%로 설정 */
+    height: 570px; /* 높이를 고정 (필요에 따라 조정) */
+    background-color: black;
+    display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    overflow: hidden; /* 이미지가 컨테이너를 넘어가지 않도록 설정 */
+}
+
+.eventImg img {
+    width: 100%; /* 이미지를 부모 요소의 너비에 맞게 설정 */
+    height: 100%; /* 이미지를 부모 요소의 높이에 맞게 설정 */
+    object-fit: cover; /* 이미지를 컨테이너 크기에 맞게 채움 */
+    object-position: center; /* 이미지를 컨테이너 중앙에 맞추기 */
+    transition: transform 0.3s ease; /* 호버 시 부드럽게 변환되도록 설정 */
+}
+
+.eventImg img:hover {
+    transform: scale(1.1); /* 이미지를 1.1배 확대 */
+}
+
+.event-list-info {
+    display: flex;
+    justify-content: space-between; /* 아이템을 양쪽에 배치 */
+    align-items: center; /* 수직으로 가운데 정렬 */
+    margin-top: 10px;
+
+}
+
+.event-list-info a {
+    color: black;
+    font-weight: bold;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.event-list-info-right div{
+    color: white;
+    background-color: goldenrod;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.event-list-info-right-ended div{
+    color: white;
+    background-color: grey;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+/*--------------------*/
+
+.event-btn{
+    display: flex;
+}
+
+/* '새 게시글 작성' 링크 스타일 */
+.create-post-link {
+    display: block;
+    width: 100px;
+
+    margin-top: 30px;
+    margin-left: auto; /* 좌측 여백 자동 */
+
+
+    padding: 8px 8px;
+    background-color: #c75e5e;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.ended-events-link {
+
+
+    display: block;
+    width: 120px;
+    margin-top: 30px;
+    margin-right: 0;
+    padding: 8px 8px;
+    background-color: grey;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+
+    font-weight: bold;
+}
+

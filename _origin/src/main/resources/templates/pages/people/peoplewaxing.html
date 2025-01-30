@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>People Waxing Page</title>
+  <!-- 공통 -->
+
+
+  <!-- 개인 -->
+    <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/people/people.css}">
+    <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/people/common.css}">
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/people/people.js}" defer></script>
+
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+
+      <div class="main-header">
+          <div class="header-imgcontainer">
+              <h2>왜 왁싱은 피플왁싱일까요?</h2>
+              <h1>왁싱의 기준, 피플왁싱</h1>
+          </div>
+          <nav class="commu-header-nav">
+              <ul>
+                  <li><a href="/peoplewaxing" class="active">피플왁싱</a></li>
+                  <li><a href="/directions" class="#">오시는길</a></li>
+              </ul>
+          </nav>
+      </div>
+
+      <div class="middle">
+
+
+          <div class="middle-top">
+              <div class="middle-top-img">
+                  <img src="/img/main/main_logo_3.jpg" alt="이미지 설명" class="slide">
+              </div>
+              <div class="middle-top-text">
+                  <h1>Safety</h1>
+                  <h2>피부에 닿는만큼 위생적이게</h2>
+                  <h3>'노더블딥'으로 스틱을 재사용하지 않습니다<br>
+                      매번 소독을 통해 청결을 유지합니다
+                  </h3>
+              </div>
+          </div>
+
+          <div class="middle-middle">
+              <div class="middle-middle-text">
+                  <h1>Professional</h1>
+                  <h2>기술을 요하는 만큼 전문적이게</h2>
+                  <h3>10년간 한자리에서 10000번 이상의 시술<br>
+                      일본 JBWA 왁싱협회 공식인증 왁싱전문샵<br>
+                      체계적인 관리 시스템으로 전문 교육을 받은 전문왁서<br>
+                  </h3>
+              </div>
+              <div class="middle-middle-img">
+                  <img src="/img/main/main_logo_3.jpg" alt="이미지 설명" class="slide">
+              </div>
+          </div>
+
+          <div class="middle-bottom">
+              <div class="middle-bottom-img">
+                  <img src="/img/main/main_logo_3.jpg" alt="이미지 설명" class="slide">
+              </div>
+              <div class="middle-bottom-text">
+                  <h1>Service</h1>
+                  <h2>기본서비스로 제공되는 다과&음료</h2>
+                  <h3>편안한 분위기에<br>
+                      즐거운 경험을
+                  </h3>
+              </div>
+          </div>
+
+      </div>
+
+  </div>
+
+</th:block>
+</html>

@@ -1,0 +1,324 @@
+
+
+/* gnb(= Global Navigation Bar) 스타일 지정 */
+
+.gnb {
+    display: flex; /* Flexbox로 설정 */
+    position: absolute; /* 부모 요소에 절대적 위치 */
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: white; /* 배경 색상 */
+}
+
+/*-- gnb 스크롤 시 높이 100px으로 조정 ---*/
+.gnb.scrolled {
+    height: 70%;
+
+}
+
+/*-- 로고 -----------------------------------------------*/
+
+.logo {
+    font-size: 24px; /* 글꼴 크기 설정 */
+    font-weight: bold; /* 글꼴 두께 설정 */
+    color: #333; /* 글꼴 색상 설정 */
+    text-decoration: none; /* 링크 밑줄 제거 */
+
+    z-index: 999;
+    position: relative;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-left: 50px;
+}
+
+/*-- 메인메뉴/서브메뉴 -------------------------------------*/
+/*-- 메인메뉴 --------------------------------------------*/
+.gnb_depth1 {
+
+    display: flex; /* 가로로 정렬 */
+    justify-content: center; /* 메뉴들을 수평 중앙에 위치 */
+    align-items: center; /* 메뉴들을 수직 중앙에 위치 */
+    list-style: none;  /* 밑줄 제거 */
+    height: 100%; /* 부모인 gnb 높이에 맞춰서 수직 중앙 정렬 */
+    position: absolute; /* 절대적 위치 */
+    left: 50%; /* 부모의 50% 위치로 이동 */
+    transform: translateX(-50%); /* 부모의 중앙에 위치하도록 이동 */
+}
+
+.gnb_depth1 li{
+    position: relative; /* 서브메뉴 위치 설정을 위한 부모 요소 기준 */
+    list-style: none; /* .제거 */
+    padding: 30px  30px;
+}
+
+/* 메인메뉴 링크 */
+.gnb_depth1 a{
+    font-weight: bold; /* 폰트 두께를 굵게 설정 */
+    color: #585858; /* 링크 색상을 회색으로 설정 */
+    position: relative; /* 후속 가상 요소의 위치를 위해 relative 설정 */
+    display: inline-block; /* 인라인 블록으로 설정하여 너비 조정 가능 */
+    text-decoration: none; /* 밑줄 제거 */
+    margin: 0; /* 마진 초기화 */
+}
+
+/* 메뉴 박스 호버 시 서브메뉴 표시 */
+.gnb_depth1 li:hover > .gnb_depth2 {
+    display: block; /* 호버 시 서브메뉴 표시 */
+}
+
+/* 메뉴 박스 호버 시 서브메뉴 표시 */
+.gnb_depth1 > li:after{
+    display:block;
+    content: '';
+    border-bottom: solid 2px #c75e5e;
+    transform: scaleX(0);
+    /*transform-origin: left; : 게이지가 왼쪽부터 나타나게*/
+    transition: transform 250ms ease-in-out;
+}
+
+.gnb_depth1 > li:hover:after{
+    transform: scaleX(1);
+}
+
+
+/*-- 서브메뉴  --------------------------------------------*/
+
+/* 서브메뉴 */
+.gnb_depth2{
+    display: none;
+    position: absolute;
+    top: 100%; /* 부모 메뉴 아래에 위치 */
+    left: 0;
+    background-color: white;
+    list-style: none;
+    margin-left: 10px;
+    padding: 15px;
+    min-width: 180px; /* 최소 너비 설정 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* 그림자 효과 */
+}
+
+.gnb_depth2 li{
+    padding: 5px;
+}
+
+.gnb_depth2 li:hover{
+    background-color: #c75e5e;
+}
+
+.gnb_depth2 li:hover a{
+    color: #faf2f2;
+}
+
+.gnb_depth2 li a{
+    font-weight: bold;
+    color: #adadad; /* 드롭다운 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    display: block;
+}
+
+/*-- 회원관리 --------------------------------------------*/
+
+.auth-links {
+
+    position: relative;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-left: auto; /* 자동 왼쪽 마진으로 오른쪽 정렬 */
+}
+
+
+.auth-links a {
+    color: #585858;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 0 15px;
+    border-right: 1px solid silver;  /* 로그인과 회원가입 사이에 선 추가 */
+}
+
+/* 마지막 버튼에는 border-right 제거 */
+.auth-links a:last-child {
+    border-right: none;
+}
+
+.auth-links a:hover {
+    color: black;
+}
+
+
+/*-- 햄버거 메뉴 ------------------------------------------*/
+
+.hamburger-menu {
+
+    position: relative;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    background: none;
+    margin-right: 50px;
+    border: none; /* 경계선 없애기 */
+}
+
+
+.hamburger-menu:hover svg path {
+    stroke: darkgoldenrod; /* 호버 시 금색으로 변경 */
+}
+
+/* 클릭 상태에서 호버 효과 비활성화 */
+.hamburger-menu.opened:hover svg path {
+    stroke: black; /* 클릭 시 색상을 기본으로 유지 */
+}
+
+svg {
+    fill: none; /* 채우기 없음 */
+    stroke: black; /* 기본 색상 */
+    stroke-width: 4; /* 선 두께 */
+}
+
+.line {
+    fill: none;
+    stroke: black;
+    stroke-width: 6;
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.line1 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+.line2 {
+    stroke-dasharray: 60 60;
+    stroke-width: 6;
+}
+.line3 {
+    stroke-dasharray: 60 207;
+    stroke-width: 6;
+}
+.opened .line1 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+.opened .line2 {
+    stroke-dasharray: 1 60;
+    stroke-dashoffset: -30;
+    stroke-width: 6;
+}
+.opened .line3 {
+    stroke-dasharray: 90 207;
+    stroke-dashoffset: -134;
+    stroke-width: 6;
+}
+
+/*-- 오버레이 스크린---------------------------------------*/
+/*-- 햄버거 클릭 시 나오는 오버레이 스크린---------------------*/
+
+
+/* Overlay effect*/
+.overlay {
+    position: fixed;
+    z-index: -10;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(124,115,115, 0.95);
+
+    /* effect */
+    top: -100%; /* 초기 위치를 화면 밖으로 설정 */
+    transition: top 1s ease-in-out, opacity 1s ease-in-out; /* 애니메이션을 위한 트랜지션 */
+    opacity: 0; /* 초기 투명도 */
+    visibility: hidden; /* 초기 상태에서는 숨김 */
+}
+
+.overlay.open {
+    top: 0; /* 보일 때 위에서 아래로 내려옴 */
+    opacity: 1; /* 보일 때 불투명하게 */
+    visibility: visible; /* 보일 때 가시성 설정 */
+}
+
+/* Menu style */
+.overlay-gnb {
+    position: relative;
+    top: 800px;
+    height: 60%;
+    text-align: center;
+    font-size: 54px;
+    opacity: 0; /* 초기 투명도 */
+    visibility: hidden; /* 초기 상태에서는 숨김 */
+    transition: top 1.2s ease-in-out, opacity 0.5s ease-in-out; /* 위치 변화에 대한 트랜지션 설정 */
+}
+
+.overlay.open .overlay-gnb {
+    top: 30%; /* 오버레이가 열릴 때 위로 이동 */
+    opacity: 1; /* 보일 때 불투명하게 */
+    visibility: visible; /* 보일 때 가시성 설정 */
+}
+
+/*-- 메인 -----------------------------------------------*/
+/*-- 오버레이 1차 메뉴-------------------------------------*/
+
+.overlay-gnb-depth1{
+    /*background-color: #4CAF50;*/
+
+    flex: 1; /* 남은 공간을 채우기 위해 flex 사용 */
+    justify-content: center; /* 메뉴들을 중앙에 위치 */
+    list-style: none;  /*밑줄제거 */
+    display: flex;     /*가로*/
+}
+
+.overlay-gnb-depth1 li{
+    /*background-color: white;*/
+    position: relative; /* 서브메뉴 위치 설정을 위한 부모 요소 기준 */
+    list-style: none; /* .제거 */
+    padding: 10px  30px;
+
+}
+
+/* 메인 메뉴 링크 */
+.overlay-gnb-depth1 a {
+    font-weight: bold; /* 폰트 두께를 굵게 설정 */
+    font-size: 18px;
+    color: white; /* 링크 색상을 회색으로 설정 */
+    position: relative; /* 후속 가상 요소의 위치를 위해 relative 설정 */
+    display: inline-block; /* 인라인 블록으로 설정하여 너비 조정 가능 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+/*-- 서브 -----------------------------------------------*/
+/*-- 오버레이 2차 메뉴-------------------------------------*/
+
+.overlay-gnb-depth2 {
+    display: block; /* 기본적으로 숨김 */
+    position: absolute;
+    /*background-color: red;*/
+    list-style: none;
+    min-width: 250px; /* 최소 너비 설정 **문장길이*/
+    top: 100%; /* 부모 요소의 높이만큼 아래로 배치 */
+    left: 50%; /* 부모 요소의 중앙 기준으로 왼쪽 */
+    transform: translateX(-50%); /* 부모 요소의 중앙에 위치하도록 조정 */
+}
+
+/* 서브메뉴 링크 */
+.overlay-gnb-depth2 li a {
+    font-size: 15px;
+    font-weight: bold;
+    color: gainsboro; /* 드롭다운 링크 색상 */
+    text-decoration: none; /* 밑줄 제거 */
+    display: block;
+    padding: 0px 20px; /* 서브메뉴 항목의 여백 */
+    left: 0;
+}
+
+.overlay-gnb-depth2 li a:hover {
+    color: black;
+}
+
+
+/*-- EFFECT ---------------------------------------------*/
+
+
+/*-- 모바일 화면에서 gnb 숨기기 ---*/
+@media (max-width: 1508px) { /* 화면 너비가 768px 이하일 때 */
+    .gnb .gnb_depth1 {
+        display: none;
+    }
+}

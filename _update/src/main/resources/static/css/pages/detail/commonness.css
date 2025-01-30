@@ -1,0 +1,65 @@
+
+.board{
+    position: relative;
+    display: flex;
+    padding-bottom: 30px;
+    justify-content: center;  /* 수평 가운데 정렬 */
+}
+
+.board-detail{
+    position: relative;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    width: 1200px;
+}
+
+.board-detail-top {
+    position: relative;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    padding: 25px 0;
+    width: 100%;
+}
+
+/* footer */
+/* -------------------------------------------------------------------------- */
+.board-detail-footer{
+    display: flex;
+    width: 100%;
+    background-color: white;
+    margin: 40px 0;
+}
+
+.board-detail-navigation{
+    width: 100%;
+}
+
+.board-detail-navigation .navbotton {
+    padding: 20px 20px;
+    border-bottom: 0.5px solid darkgray; /* 모든 요소에 bottom border 적용 */
+}
+
+.board-detail-navigation .navbotton:first-child {
+    border-top: 0.5px solid darkgray;  /* 첫 번째 요소에만 top border 적용 */
+}
+
+
+.navbotton a{
+    text-decoration: none;
+}
+
+.navbotton .dots{
+    font-size: 14px;
+    text-decoration: none;
+    color: #585858;
+    font-weight: bold;
+}
+
+.navbotton span{
+    font-size: 14.5px;
+    margin-left: 30px;
+    font-weight: bold;
+    color: black;
+}
+
+/* -------------------------------------------------------------------------- */

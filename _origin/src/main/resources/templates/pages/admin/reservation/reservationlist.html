@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>예약 현황</title>
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/admin/common.css}">
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/admin/reservation/reservationlist.css}">
+
+  <script defer th:src="@{/js/pages/admin/reservation/reservationlist.js}"></script>
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="reservation-list">
+      <h2>예약 현황</h2>
+      <!-- "전체 예약 보기" 버튼 추가 -->
+      <a href="/reservation/list">
+        <button type="button">전체 예약 보기</button>
+      </a>
+
+      <!-- 예약일 검색 폼 -->
+      <form th:action="@{/reservation/list}" method="get">
+        <label for="reservationDate">예약일 검색: </label>
+        <input type="date" id="reservationDate" name="reservationDate" th:value="${searchDate}" />
+        <button type="submit">검색</button>
+      </form>
+
+      <table>
+        <thead>
+        <tr>
+          <th>예약 번호</th>
+          <th>환자 번호</th>
+          <th>환자 이름</th>
+          <th>예약일</th>
+          <th>예약시간</th>
+          <th>시술 부위</th>
+          <th>예약생성일</th>
+          <th>예약수정일</th>
+          <th>상세보기</th>
+          <th>예약확정</th>
+          <th>예약취소</th>
+          <th>확정여부</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 예약 목록을 반복해서 출력 -->
+        <tr th:each="reservation : ${reservations}">
+          <td th:text="${reservation.reservationId}"></td>
+          <td th:text="${reservation.customer.Id}"></td>
+          <td th:text="${reservation.customer.name}"></td>
+          <td th:text="${reservation.reservationDate}"></td>
+          <td th:text="${reservation.hourselect} + ':' + ${reservation.minutesselect}"></td>
+          <td th:text="${reservation.treatment1} + ' -> ' + ${reservation.treatment2}"></td>
+          <td th:text="${reservation.createdat}"></td>
+          <td th:text="${reservation.updatedat}"></td>
+          <!-- 내용 셀에 추가 클래스를 추가 -->
+          <td>
+            <!-- "상세 보기" 버튼 -->
+            <button type="button" class="openModalBtn" data-text="${reservation.additionalText}">내용 보기</button>
+          </td>
+          <td>
+            <!-- 예약 확정 버튼 -->
+            <form th:action="@{/reservation/confirm/{id}(id=${reservation.reservationId})}" method="post">
+              <button type="submit" th:disabled="${reservation.status == 'y'}">확정</button>
+            </form>
+          </td>
+          <td>
+            <!-- 예약 취소 버튼 -->
+            <form th:action="@{/reservation/cancel/{id}(id=${reservation.reservationId})}" method="post">
+              <button type="submit" th:disabled="${reservation.status == 'n'}">취소</button>
+            </form>
+          </td>
+          <td th:text="${reservation.status == 'y' ? '확정' : (reservation.status == 'n' ? '취소' : '대기')}"></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- 모달 구조 -->
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>예약 내용</h2>
+          <p id="modalText">내용이 여기에 표시됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</th:block>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>News Detail</title>
+  <!--공통-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/community/commonness.css}">
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/detail/commonness.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/commonness.js}"></script>
+  <!--개인-->
+  <link rel="stylesheet" th:inline="css"  th:href="@{/css/pages/detail/detailevent.css}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="commu-header">
+      <div class="image-container">
+        <img src="/img/mmenu1/lgogo.jpg" alt="이미지 설명">
+      </div>
+      <nav class="commu-header-nav">
+        <ul>
+          <li><a href="/event/list" class="active">이벤트</a></li>
+          <li><a href="/news/list" class="#">피플소식</a></li>
+          <li><a href="/review/list" class="#">시술후기</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="commu-title">
+      <h1>이벤트</h1>
+      <a>EVENT</a>
+    </div>
+
+    <div class="board">
+      <div class="board-detail">
+
+        <div class="board-detail-top">
+
+          <div class="board-detail-top-one">
+            <span class="type">이벤트</span> <!-- '피플소식'에서 '이벤트'로 변경 -->
+            <a class="title" th:text="${event.title}">제목</a> <!-- 'news'에서 'event'로 변경 -->
+          </div>
+
+          <div class="board-detail-top-two">
+            <div class="one">
+              <i class="bi bi-clock"></i>
+              <span th:text="${#temporals.format(event.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span> <!-- 'news'에서 'event'로 변경 -->
+            </div>
+            <div class="two">
+              <i class="bi bi-eye"></i>
+              <span th:text="${event.views}">조회수</span> <!-- 'news'에서 'event'로 변경 -->
+            </div>
+          </div>
+        </div>
+
+        <div class="board-detail-middle">
+          <div class="board-images">
+            <div th:if="${event.imageUrls != null and event.imageUrls.size() > 1}">
+              <img th:src="@{${event.imageUrls[1]}}" alt="이미지" />
+            </div>
+          </div>
+          <p th:text="${event.content}">내용</p>
+        </div>
+
+        <div class="board-detail-bottom">
+          <form th:action="@{/event/delete/{id}(id=${event.id})}" method="post" style="display:inline;">
+            <button type="submit" onclick="return confirm('정말로 이 게시글을 삭제하시겠습니까?');">삭제</button>
+          </form>
+          <a th:href="@{/event/edit/{id}(id=${event.id})}" class="back-link">수정</a> <!-- 'news'에서 'event'로 변경 -->
+          <a href="/event/list" class="back-link">목록</a> <!-- 'news'에서 'event'로 변경 -->
+        </div>
+
+        <div class="board-detail-footer">
+          <div class="board-detail-navigation">
+
+            <!-- 이전글 링크 (존재할 경우 표시) -->
+            <div class="navbotton" th:if="${nextEvent != null}"> <!-- 'nextNews'에서 'nextEvent'로 변경 -->
+              <a class="dots"> 다음글 ▲</a>
+              <a th:href="@{'/event/detail/' + ${nextEvent.id}}" class="next-link"> <!-- 'nextNews'에서 'nextEvent'로 변경 -->
+                <span th:text="${nextEvent.title}" class="next-title">다음글 제목</span> <!-- 'nextNews'에서 'nextEvent'로 변경 -->
+              </a>
+            </div>
+
+            <!-- 다음글 링크 (존재할 경우 표시) -->
+            <div class="navbotton" th:if="${previousEvent != null}"> <!-- 'previousNews'에서 'previousEvent'로 변경 -->
+              <a class="dots"> 이전글 ▼</a>
+              <a th:href="@{'/event/detail/' + ${previousEvent.id}}" class="previous-link"> <!-- 'previousNews'에서 'previousEvent'로 변경 -->
+                <span th:text="${previousEvent.title}" class="previous-title">이전글 제목</span> <!-- 'previousNews'에서 'previousEvent'로 변경 -->
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</th:block>
+</html>

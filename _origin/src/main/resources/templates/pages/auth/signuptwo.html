@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>main homepage</title>
+  <!--공통-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/auth/signup.css}">
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/auth/users.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/auth/users.js}"></script>
+  <!--개인-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/auth/signuptwo.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/auth/signup.js}"></script>
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="pages-title">
+      <h1>SIGN UP</h1>
+      <a>회원가입</a>
+    </div>
+
+    <div class="signup-header">
+      <nav class="signup-header-nav">
+        <ul>
+          <li><a>01.약관동의</a></li>
+          <li><a class="active">02.회원가입</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <form th:action="@{/signup}" method="post">
+      <div class="form-group">
+        <label for="username">아이디</label>
+        <input type="text" id="username" name="username" required placeholder="아이디를 입력하세요" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="passwordConfirm">비밀번호 확인</label>
+        <input type="password" id="passwordConfirm" name="passwordConfirm" required placeholder="비밀번호를 다시 입력하세요" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" required placeholder="이름을 입력하세요" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="address">주소</label>
+        <input type="text" id="address" name="address" required placeholder="주소를 입력하세요" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">연락처</label>
+        <input type="text" id="phone" name="phone" required placeholder="연락처를 입력하세요" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" required placeholder="이메일을 입력하세요" class="form-control" />
+      </div>
+
+      <button type="submit" class="btn btn-primary signup-btn">회원가입</button>
+    </form>
+
+  </div>
+</th:block>
+</html>

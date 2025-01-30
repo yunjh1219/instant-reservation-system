@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>main homepage</title>
+  <!--공통-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/community/commonness.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/commonness.js}"></script>
+  <!--개인-->
+  <link rel="stylesheet" th:inline="css"  th:href="@{/css/pages/community/event.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/event.js}"></script>
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="commu-header">
+      <div class="image-container">
+        <img src="/img/community/banner.jpg" alt="이미지 설명">
+      </div>
+      <nav class="commu-header-nav">
+        <ul>
+          <li><a th:href="@{/api/event/activelist}" class="active">이벤트</a></li>
+          <li><a th:href="@{/api/news/list}" class="#">피플소식</a></li>
+          <li><a th:href="@{/api/review/list}" class="#">시술후기</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="commu-title2">
+      <h1>EVENT</h1>
+      <a>이벤트</a>
+    </div>
+    <div class="board">
+      <div class="board-list">
+
+        <div class="event-board">
+
+          <!-- 게시글 목록 반복 -->
+          <div th:each="event : ${eventPage.content}" class="event-board-list">
+            <div class="eventImg">
+              <a th:href="@{/event/detail/{id}(id=${event.id})}">
+                <!-- 이미지가 null이 아니면 이미지를 보여줌 -->
+                <img th:if="${not #lists.isEmpty(event.imageUrls)}" th:src="${event.imageUrls.get(0)}" alt="이미지" loading="lazy">
+                <!-- 이미지가 null이면 대체 텍스트 또는 빈 공간을 보여줌 -->
+                <span th:if="${#lists.isEmpty(event.imageUrls)}">이미지가 없습니다</span>
+              </a>
+            </div>
+
+              <div class="event-list-info">
+
+                <div class="event-list-info-left">
+                <a th:href="@{/event/detail/{id}(id=${event.id})}" th:text="${event.title}">
+                  <h3 th:text="${event.title}">제목</h3>
+                </a>
+                <div>
+                  종료일: <span th:text="${#temporals.format(event.endDate, 'yyyy-MM-dd')}"></span>
+                </div>
+                </div>
+
+                <div class="event-list-info-right">
+                <div>
+                  진행중
+                </div>
+                </div>
+
+              </div>
+          </div>
+
+        </div>
+
+        <div class="event-btn">
+          <a href="/event/list/ended" class="ended-events-link">지난 이벤트</a>
+          <a href="/writeevent" class="create-post-link" sec:authorize="hasRole('ROLE_ADMIN')">글쓰기</a>
+        </div>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+          <!-- 이전 페이지 버튼 -->
+          <a th:href="@{/event/list(page=${eventPage.number - 1})}"
+             th:classappend="${eventPage.hasPrevious()} ? '' : 'disabled'"
+             th:if="${eventPage.hasPrevious()}">&lt;</a>
+          <a class="disabled" th:unless="${eventPage.hasPrevious()}">&lt;</a>
+
+          <!-- 현재 페이지 번호 표시 -->
+          <a class="current-page" th:text="${eventPage.number + 1}"></a>
+
+          <!-- 다음 페이지 버튼 -->
+          <a th:href="@{/event/list(page=${eventPage.number + 1})}"
+             th:classappend="${eventPage.hasNext()} ? '' : 'disabled'"
+             th:if="${eventPage.hasNext()}">&gt;</a>
+          <a class="disabled" th:unless="${eventPage.hasNext()}">&gt;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</th:block>
+</html>

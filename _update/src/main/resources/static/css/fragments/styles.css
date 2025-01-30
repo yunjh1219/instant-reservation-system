@@ -1,0 +1,52 @@
+/* 전체 페이지 스타일 */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+}
+
+/* 헤더 스타일 */
+/* 상단바 고정만 설정 */
+.header {
+    margin: 0; /* 마진 제거 */
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+    height: 100px;
+}
+
+
+body {
+    font-family: Arial, sans-serif; /* 기본 글꼴 설정 */
+    margin: 0; /* 기본 마진 제거 */
+
+}
+
+/* 콘텐츠 스타일 */
+.content {
+    position: relative;
+
+    margin: 0; /* 마진 제거 */
+
+    box-sizing: border-box; /* 패딩과 테두리를 포함하여 크기를 계산 */
+    overflow: hidden; /* 콘텐츠가 넘치지 않도록 설정 */
+    width: 100%;
+
+    flex-direction: column;
+    align-items: center; /* 수평 중앙 정렬 */
+    display: flex;
+    min-height: 800px;
+    background-color: #fafafa; /* 더 밝고 깨끗한 느낌 */
+}
+
+footer {
+    background-color: #333; /* 푸터 배경 색상 */
+    color: white; /* 글자 색상 */
+    width: 100%; /* 전체 너비 설정 */
+}

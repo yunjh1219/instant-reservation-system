@@ -1,0 +1,35 @@
+.customer-list {
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 30px;
+}
+
+/* customerlist_btn 클래스에 Flexbox 설정 */
+.customerlist_btn {
+    display: flex;             /* Flexbox 사용 */
+
+    margin-bottom: 20px;
+}
+
+/* 검색 폼 영역을 flex로 가로 배치 */
+.search-section {
+    display: flex;               /* flex 사용 */
+    gap: 0;                       /* 입력 필드와 버튼 간의 간격 제거 */
+    align-items: center;         /* 수직 중앙 정렬 */
+}
+
+.customerlist_btn form {
+    margin: 0;                 /* 불필요한 마진 제거 */
+}
+
+.customerlist_btn select,
+.customerlist_btn input,
+.customerlist_btn button {
+    padding: 5px 10px;         /* 입력 필드와 버튼에 패딩 추가 */
+    font-size: 14px;            /* 폰트 크기 설정 */
+}
+
+.customerlist_btn button {
+    cursor: pointer;           /* 버튼 클릭 시 포인터 표시 */
+    margin-right: 5px;
+}

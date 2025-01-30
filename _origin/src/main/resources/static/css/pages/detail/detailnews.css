@@ -1,0 +1,117 @@
+
+/* top */
+/* -------------------------------------------------------------------------- */
+
+.board-detail-top-one {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    position: relative;
+}
+
+.board-detail-top-one .type{
+   color: #c75e5e;
+    font-weight: bold;
+}
+
+.board-detail-top-one .title{
+    font-size: 23px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.board-detail-top-two {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    flex-grow: 1; /* 두 번째 영역이 남은 공간을 차지하게 함 */
+    align-items: center; /* 수직 중앙 정렬 */
+    flex-direction: row; /* 내부 요소들이 수평으로 정렬되도록 설정 */
+}
+
+.board-detail-top-two .one{
+    margin-right: 15px;
+}
+
+.board-detail-top-two .one i,
+.board-detail-top-two .two i {
+    font-size: 13px; /* 아이콘 크기를 개별적으로 조정할 수도 있음 */
+}
+
+.board-detail-top span {
+    color: #585858;
+    font-size: 13px;
+}
+
+/* -------------------------------------------------------------------------- */
+.board-detail-middle {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* 수직 정렬 */
+    align-items: center; /* 수평 중앙 정렬 */
+    min-height: 500px;
+    width: 100%;
+    text-align: center; /* 텍스트를 중앙 정렬 */
+}
+
+.board-detail-middle .board-images {
+
+    display: flex;
+    justify-content: center; /* 이미지들을 중앙에 배치 */
+    flex-wrap: wrap; /* 이미지들이 줄 바꿈이 가능하도록 설정 */
+}
+
+.board-detail-middle .board-images img {
+
+    width: 1200px; /* 이미지의 최대 너비 설정 */
+    height: auto; /* 높이는 자동으로 설정되어 비율을 유지 */
+    object-fit: contain; /* 이미지 비율을 유지하며, 컨테이너에 맞게 크기 조정 */
+    margin: 10px; /* 이미지 사이의 간격 */
+}
+
+.board-detail-middle p {
+    width: 100%; /* 텍스트의 너비를 부모 요소에 맞춤 */
+    white-space: pre-wrap; /* 텍스트의 줄 바꿈을 처리 */
+    text-align: left; /* 텍스트를 왼쪽 정렬 */
+    padding: 20px; /* 텍스트 주변에 여백 추가 */
+    box-sizing: border-box; /* 패딩을 포함한 크기 계산 */
+}
+
+/* bottom */
+/* -------------------------------------------------------------------------- */
+
+.board-detail-bottom{
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px; /* 요소들 간의 간격 조절 */
+
+    align-items: center; /* 수직 중앙 정렬 */
+    margin: 20px 0;
+}
+
+/* button과 a의 스타일을 동일하게 설정 */
+.board-detail-bottom button,
+.board-detail-bottom a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: grey; /* 글자 색상 */
+    background-color: white; /* 배경색 */
+    width: 50px; /* 너비 */
+
+    display: flex;
+    justify-content: center; /* 텍스트를 중앙 정렬 */
+    align-items: center; /* 텍스트를 수직 중앙 정렬 */
+    border: 1px solid grey; /* 테두리 */
+    font-size: 16px; /* 글자 크기 */
+
+    cursor: pointer; /* 클릭 가능하도록 설정 */
+}
+
+/* 호버 시 배경 색상 변경 */
+.board-detail-bottom button:hover,
+.board-detail-bottom a:hover {
+    background-color: #c75e5e;
+    border: 1px solid #c75e5e; /* 테두리 */
+    color: white;
+}
+
+/* -------------------------------------------------------------------------- */
+
+
