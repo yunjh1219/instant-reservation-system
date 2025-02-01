@@ -9,10 +9,15 @@ import edu.du._waxing_home.user.dto.UserRequestDto;
 import edu.du._waxing_home.user.repository.UserRepository;
 import edu.du._waxing_home.user.service.AuthService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -101,45 +107,22 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestParam String username,
-                        @RequestParam String password,
-                        HttpServletResponse response,
-                        Model model) {
-
+    public String login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) {
         try {
-            LoginRequestDto loginRequestDto = new LoginRequestDto(username, password);
-            Token token = authService.login(loginRequestDto);
+            // 로그인 요청 처리
+            Token token = authService.login(new LoginRequestDto(username, password));
 
+            // JWT 토큰을 쿠키에 저장 (브라우저에서 클라이언트가 관리)
+            Cookie cookie = new Cookie("JWT_TOKEN", token.getAccessToken().getData());
+            cookie.setHttpOnly(true); // 클라이언트 스크립트에서 접근 못하게 설정
+            cookie.setPath("/"); // 모든 경로에서 사용할 수 있도록 설정
+            response.addCookie(cookie);
 
-            // 액세스 토큰을 HTTP-only 쿠키로 설정
-            Cookie accessTokenCookie = new Cookie("accessToken", token.getAccessToken().getData());
-            accessTokenCookie.setHttpOnly(true); // JavaScript에서 접근할 수 없도록 설정
-            accessTokenCookie.setSecure(true); // HTTPS에서만 전송되도록 설정 (실제 운영 환경에서)
-            accessTokenCookie.setPath("/"); // 모든 경로에서 쿠키를 사용할 수 있도록 설정
-            accessTokenCookie.setMaxAge(3600); // 쿠키 유효 시간 설정 (1시간)
-
-            // 리프레시 토큰도 동일하게 설정
-            Cookie refreshTokenCookie = new Cookie("refreshToken", token.getRefreshToken().getData());
-            refreshTokenCookie.setHttpOnly(true);
-            refreshTokenCookie.setSecure(true);
-            refreshTokenCookie.setPath("/");
-            refreshTokenCookie.setMaxAge(3600); // 리프레시 토큰 유효 시간
-
-            // 쿠키를 응답에 추가
-            response.addCookie(accessTokenCookie);
-            response.addCookie(refreshTokenCookie);
-
-            model.addAttribute("message", "로그인 성공!");
-
-
-            return "redirect:/"; // 홈 페이지로 리다이렉트
+            return "redirect:/"; // 로그인 성공 후 리다이렉트
 
         } catch (IllegalArgumentException e) {
-            model.addAttribute("error", e.getMessage());
-            return "pages/auth/login"; // 로그인 실패 시 로그인 페이지로 돌아감
+            return "pages/auth/login"; // 로그인 실패 시 로그인 페이지로 돌아가기
         }
     }
-
 }
-
 

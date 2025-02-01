@@ -27,8 +27,6 @@ public class AuthService {
         String username = loginRequestDto.getUsername();
         String password = loginRequestDto.getPassword();
 
-        System.out.println("00000000000로그인 요청 - 사용자명: " + username);  // 디버깅 로그
-
         // 사용자 조회 시 존재하지 않으면 null 반환
         User user = userRepository.findByUsername(username).orElse(null);
 
