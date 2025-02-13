@@ -22,22 +22,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        // 1. Authorization 헤더에서 JWT 토큰을 확인
-        String bearerToken = request.getHeader("Authorization");
-
-        if (bearerToken == null || !bearerToken.startsWith("Bearer ")) {
-            // 2. Authorization 헤더에 토큰이 없으면 쿠키에서 확인
-            Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    if ("JWT_TOKEN".equals(cookie.getName())) {
-                        bearerToken = "Bearer " + cookie.getValue();  // 쿠키에서 가져온 값을 Authorization 헤더 형식으로 변경
-                        break;
-                    }
+        // 1. 쿠키에서 JWT 토큰을 확인
+        String bearerToken = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if ("JWT_TOKEN".equals(cookie.getName())) {
+                    bearerToken = "Bearer " + cookie.getValue();  // 쿠키에서 가져온 값을 Authorization 헤더 형식으로 변경
+                    break;
                 }
             }
         }
 
+        // 2. JWT 토큰이 존재하면 인증 처리
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
             String token = bearerToken.substring(7);  // "Bearer " 부분을 제외한 토큰만 추출
 
@@ -47,6 +44,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
 
+        // 필터 체인을 계속 진행
         filterChain.doFilter(request, response);
     }
 }

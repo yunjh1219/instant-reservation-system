@@ -72,8 +72,10 @@
         <a sec:authorize="isAnonymous()" th:href="@{/signupone}" class="signupone">회원가입</a>
 
         <!-- 인증된 경우 로그아웃 링크 표시 -->
-        <a sec:authorize="isAuthenticated()" href="/logout" class="logout">Logout</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="logout">Logout</a>
       </div>
+
+
       <!--        <a href="#" class="btn_gnb"></a>-->
       <button class="hamburger-menu" onclick="toggleMenu(this)" aria-label="Main Menu">
         <svg width="30" height="30" viewBox="0 0 100 100">

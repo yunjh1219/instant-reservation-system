@@ -33,7 +33,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
-
+//변경해야함
     @Autowired
     private AuthService authService;
 
@@ -123,6 +123,18 @@ public class AuthController {
         } catch (IllegalArgumentException e) {
             return "pages/auth/login"; // 로그인 실패 시 로그인 페이지로 돌아가기
         }
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpServletResponse response) {
+        // JWT_TOKEN 쿠키를 삭제하기 위해 만료 시간을 과거로 설정
+        Cookie cookie = new Cookie("JWT_TOKEN", null);
+        cookie.setHttpOnly(true); // 클라이언트 스크립트에서 접근 불가
+        cookie.setPath("/"); // 모든 경로에서 사용할 수 있도록 설정
+        cookie.setMaxAge(0); // 만료 시간을 0으로 설정하여 쿠키 삭제
+        response.addCookie(cookie); // 쿠키를 응답에 추가하여 브라우저가 삭제하도록 유도
+
+        return "redirect:/"; // 로그아웃 후 로그인 페이지로 리다이렉트
     }
 }
 
