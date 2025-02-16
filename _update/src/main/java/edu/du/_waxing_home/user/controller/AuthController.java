@@ -2,34 +2,27 @@ package edu.du._waxing_home.user.controller;
 
 import edu.du._waxing_home.global.security.JwtProvider;
 import edu.du._waxing_home.global.security.Token;
-import edu.du._waxing_home.user.domain.Role;
-import edu.du._waxing_home.user.domain.User;
 import edu.du._waxing_home.user.dto.LoginRequestDto;
 import edu.du._waxing_home.user.dto.UserRequestDto;
 import edu.du._waxing_home.user.repository.UserRepository;
 import edu.du._waxing_home.user.service.AuthService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
+@Slf4j
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
@@ -37,10 +30,7 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    private final PasswordEncoder passwordEncoder;
-    private final JwtProvider jwtProvider;
-    @Autowired
-    private UserRepository userRepository;
+
 
     //메인페이지
     @GetMapping("/")
@@ -109,6 +99,8 @@ public class AuthController {
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, HttpServletResponse response) {
         try {
+
+            System.out.println("=======================로그인");
             // 로그인 요청 처리
             Token token = authService.login(new LoginRequestDto(username, password));
 
@@ -126,15 +118,32 @@ public class AuthController {
     }
 
     @PostMapping("/logout")
-    public String logout(HttpServletResponse response) {
-        // JWT_TOKEN 쿠키를 삭제하기 위해 만료 시간을 과거로 설정
-        Cookie cookie = new Cookie("JWT_TOKEN", null);
-        cookie.setHttpOnly(true); // 클라이언트 스크립트에서 접근 불가
-        cookie.setPath("/"); // 모든 경로에서 사용할 수 있도록 설정
-        cookie.setMaxAge(0); // 만료 시간을 0으로 설정하여 쿠키 삭제
-        response.addCookie(cookie); // 쿠키를 응답에 추가하여 브라우저가 삭제하도록 유도
+    public String logout(HttpServletResponse response, HttpServletRequest request) {
+        // 콘솔에 로그 출력
+        System.out.println("Logout request received");
 
-        return "redirect:/"; // 로그아웃 후 로그인 페이지로 리다이렉트
+        // JWT_TOKEN 쿠키 삭제
+        Cookie cookie = new Cookie("JWT_TOKEN", null);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/");
+        cookie.setMaxAge(0); // 즉시 삭제
+        cookie.setSecure(false); // HTTPS 환경이면 true
+        response.addCookie(cookie);
+
+        // SameSite=None을 적용한 Set-Cookie 헤더 추가
+        response.setHeader("Set-Cookie", "JWT_TOKEN=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=None");
+
+        // SecurityContextHolder에서 인증 정보를 제거
+        SecurityContextHolder.clearContext(); // 인증 정보 삭제
+
+        // 세션이 존재하면 세션을 무효화
+        if (request.getSession(false) != null) {
+            request.getSession().invalidate();
+        }
+
+        return "redirect:/"; // 로그인 페이지로 이동
     }
+
+
 }
 
