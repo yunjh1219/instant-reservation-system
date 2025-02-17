@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
+//--
     private final DataSource dataSource;
 
     // 생성자 주입을 통해 DataSource를 주입받습니다.
