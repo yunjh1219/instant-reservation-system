@@ -6,7 +6,8 @@
 
 ## 메인 화면
 
-![main](https://github.com/user-attachments/assets/98e03171-4e7b-45cf-a157-363c98d5ded8)
+![main-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/a7cf188d-2b2d-42f8-8e5c-c38c85592cc8)
+
 
 ## 비회원 실시간 예약
 
