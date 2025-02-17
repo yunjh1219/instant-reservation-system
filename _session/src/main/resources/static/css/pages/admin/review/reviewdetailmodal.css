@@ -1,0 +1,55 @@
+/* 모달 스타일 */
+.modal {
+    display: none;  /* 기본적으로 숨김 */
+    position: fixed;
+    z-index: 1;  /* 모달이 화면의 최상위에 나타나도록 설정 */
+    left: 0;
+    top: 0;
+    width: 100%;  /* 화면 전체를 덮도록 설정 */
+    height: 100%;
+    overflow: auto;  /* 화면에 맞는 크기로 스크롤을 허용 */
+    background-color: rgba(0, 0, 0, 0.4);  /* 반투명 배경 */
+}
+
+/* 모달 내용 영역 */
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;  /* 화면 중앙에 위치하도록 설정 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;  /* 모달 창의 너비를 화면의 50%로 설정 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 그림자 효과 추가 */
+    border-radius: 8px;  /* 둥근 모서리 추가 */
+}
+
+/* 닫기 버튼 스타일 */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* 닫기 버튼에 마우스 오버 시 색상 변경 */
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+}
+
+/* 폼 입력 필드 스타일 */
+form input, form textarea {
+    width: 100%;  /* 입력 필드가 전체 너비를 차지하도록 설정 */
+    padding: 10px;
+    margin: 10px 0;  /* 위/아래 여백을 추가 */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form textarea {
+    height: 100px;  /* 내용 입력을 위한 텍스트 영역 높이 설정 */
+    resize: vertical;  /* 세로 크기 조정 가능 */
+}
+

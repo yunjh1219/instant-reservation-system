@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>main homepage</title>
+  <!--공통-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/community/commonness.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/commonness.js}"></script>
+  <!--개인-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/community/news.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/news.js}"></script>
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="commu-header">
+      <div class="image-container">
+        <img src="/img/community/banner.jpg" alt="이미지 설명">
+      </div>
+      <nav class="commu-header-nav">
+        <ul>
+          <li><a href="/event/list" class="#">이벤트</a></li>
+          <li><a href="/news/list" class="active">피플소식</a></li>
+          <li><a href="/review/list" class="#">시술후기</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="commu-title">
+      <h1>소식</h1>
+      <a>NEWS</a>
+    </div>
+    <div class="board">
+      <div class="board-list">
+        <table>
+          <thead>
+          </thead>
+          <tbody>
+          <!-- 게시글 목록 반복 -->
+          <tr th:each="news : ${newsPage.content}">
+            <td th:text="${news.id}"></td> <!-- 번호 -->
+            <td>
+              <a th:href="@{/news/detail/{id}(id=${news.id})}" th:text="${news.title}"></a>
+            </td> <!-- 제목 -->
+            <td th:text="${#temporals.format(news.createdAt, 'yyyy-MM-dd')}"></td> <!-- 작성일 -->
+          </tr>
+          </tbody>
+        </table>
+        <a href="/writenews" class="create-post-link" sec:authorize="hasRole('ROLE_ADMIN')">글쓰기</a>
+
+        <!-- 페이지네이션 -->
+        <div class="pagination">
+          <!-- 이전 페이지 버튼 -->
+          <a th:href="@{/news/list(page=${newsPage.number - 1})}"
+             th:classappend="${newsPage.hasPrevious()} ? '' : 'disabled'"
+             th:if="${newsPage.hasPrevious()}">&lt;</a>
+          <a class="disabled" th:unless="${newsPage.hasPrevious()}">&lt;</a>
+
+          <!-- 현재 페이지 번호 표시 -->
+          <a class="current-page" th:text="${newsPage.number + 1}"></a>
+
+          <!-- 다음 페이지 버튼 -->
+          <a th:href="@{/news/list(page=${newsPage.number + 1})}"
+             th:classappend="${newsPage.hasNext()} ? '' : 'disabled'"
+             th:if="${newsPage.hasNext()}">&gt;</a>
+          <a class="disabled" th:unless="${newsPage.hasNext()}">&gt;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</th:block>
+</html>

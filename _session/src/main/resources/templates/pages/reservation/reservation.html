@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>main homepage</title>
+
+  <!-- 공통 -->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/reservation/commonness.css}">
+
+  <!-- 개인 -->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/reservation/reservation.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/reservation/reservation.js}"></script>
+
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <!--부킹 내 header-->
+    <div class="booking-header">
+      <div class="image-container">
+        <img src="/img/reservation/banner.jpg" alt="이미지 설명">
+        <nav class="booking-nav">
+          <ul>
+            <li><a href="/reservaion" class="active">온라인예약</a></li>
+            <li><a href="/counseling" class="#">온라인상담</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <!--부킹 내 body-->
+    <div class="booking-body">
+      <div class="booking-body-logo">
+        <span class="bold-text">실시간 온라인예약</span><br>
+        <span class="small-text">실시간으로 간편하게 예약해보세요</span>
+      </div>
+
+      <div class="form-box">
+        <div class="form-box-logo">
+          <h1>Information</h1>
+        </div>
+        <div class="reservation-form">
+          <form action="/submit-appointment" method="post" id="reservation-form">
+            <!-- 이름과 연락처를 한 줄에 배치 -->
+            <div class="reservation-container">
+              <div class="input-group">
+
+                <div class="input-item">
+                  <label for="name">이름</label>
+                  <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="input-item">
+                  <label for="phonenumber">연락처</label>
+                  <input type="text" id="phonenumber" name="phonenumber" required>
+                </div>
+
+              </div>
+
+              <div class="input-group">
+
+                <div class="input-item">
+                  <label for="email">이메일</label>
+                  <input type="text" id="email" name="email" required>
+                </div>
+                <div class="input-item">
+                  <label>성별</label>
+                  <label>
+                    <input type="radio" name="gender" value="여자"> 여(F)
+                  </label>
+                  <label>
+                    <input type="radio" name="gender" value="남자"> 남(M)
+                  </label>
+                </div>
+              </div>
+
+              <div class="input-group">
+                <div class="input-item">
+                  <label for="name">예약일</label>
+                  <input type="date" id="reservationDate" name="reservationDate" required>
+                </div>
+
+                <div class="input-item">
+                  <select id="hourselect" name="hourselect" required>
+                    <option value="11">AM 11</option>
+                    <option value="12">PM 12</option>
+                    <option value="13">PM 01</option>
+                    <option value="14">PM 02</option>
+                    <option value="15">PM 03</option>
+                    <option value="16">PM 04</option>
+                    <option value="17">PM 05</option>
+                    <option value="18">PM 06</option>
+                  </select>
+                  <select id="minutesselect" name="minutesselect" required>
+                    <option value="00">00</option>
+                    <option value="20">20</option>
+                    <option value="40">40</option>
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="input-group">
+                <div class="input-item">
+                  <label for="treatment1">1차 분류</label>
+                  <select id="treatment1" name="treatment1" required>
+                    <option value="1차 분류" selected>1차 분류</option>
+                    <option value="브라질리언왁싱">브라질리언왁싱</option>
+                    <option value="바디왁싱">바디왁싱</option>
+                    <option value="페이스왁싱">페이스왁싱</option>
+                    <option value="임산부왁싱">임산부왁싱</option>
+                  </select>
+                </div>
+
+                <div class="input-item">
+                  <select id="treatment2" name="treatment2" required>
+                    <option value="2차 분류" selected>2차 분류</option>
+                    <!-- 이곳은 JavaScript로 동적으로 업데이트 됩니다 -->
+                  </select>
+                </div>
+
+              </div>
+
+              <div class="input-group">
+                <div class="input-item">
+                  <textarea id="additionalText" name="additionalText" required></textarea>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+
+
+        <div class="reservation-details">
+          <h3>Login 예약서</h3>
+          <div id="details-content">
+
+            <div class="details-group">
+              <div class="input-item">
+                <label for="details-gender">성별</label>
+                <span id="details-gender">-</span>
+              </div>
+            </div>
+            <div class="details-group">
+              <div class="input-item">
+                <label for="details-reservation-date">예약일</label>
+                <span id="details-reservation-date">-</span>
+                <span id="details-reservation-time">-</span>
+              </div>
+            </div>
+          </div>
+          <div class="details-group">
+            <div class="input-item">
+              <label for="details-treatment">시술부위</label>
+              <span id="details-treatment">-</span>
+            </div>
+          </div>
+          <!-- 예약하기 버튼 추가 -->
+          <div class="input-item">
+            <button type="submit" class="submit-button" id="submit-button">예약하기</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!--부킹 내 body-->
+</th:block>
+</html>
