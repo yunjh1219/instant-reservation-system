@@ -18,7 +18,7 @@
   <div class="content">
     <div class="commu-header">
       <div class="image-container">
-        <img src="/img/mmenu1/lgogo.jpg" alt="이미지 설명">
+        <img src="/img/community/banner.jpg" alt="이미지 설명">
       </div>
       <nav class="commu-header-nav">
         <ul>
@@ -57,8 +57,8 @@
 
         <div class="board-detail-middle">
           <div class="board-images">
-            <div th:if="${event.imageUrls != null and event.imageUrls.size() > 1}">
-              <img th:src="@{${event.imageUrls[1]}}" alt="이미지" />
+            <div th:if="${event.bodyImagePath != null}">
+              <img th:src="@{${event.bodyImagePath}}" alt="이미지" />
             </div>
           </div>
           <p th:text="${event.content}">내용</p>
@@ -78,7 +78,7 @@
             <!-- 이전글 링크 (존재할 경우 표시) -->
             <div class="navbotton" th:if="${nextEvent != null}"> <!-- 'nextNews'에서 'nextEvent'로 변경 -->
               <a class="dots"> 다음글 ▲</a>
-              <a th:href="@{'/event/detail/' + ${nextEvent.id}}" class="next-link"> <!-- 'nextNews'에서 'nextEvent'로 변경 -->
+              <a th:href="@{'/event/' + ${nextEvent.id}}" class="next-link"> <!-- 'nextNews'에서 'nextEvent'로 변경 -->
                 <span th:text="${nextEvent.title}" class="next-title">다음글 제목</span> <!-- 'nextNews'에서 'nextEvent'로 변경 -->
               </a>
             </div>
@@ -86,7 +86,7 @@
             <!-- 다음글 링크 (존재할 경우 표시) -->
             <div class="navbotton" th:if="${previousEvent != null}"> <!-- 'previousNews'에서 'previousEvent'로 변경 -->
               <a class="dots"> 이전글 ▼</a>
-              <a th:href="@{'/event/detail/' + ${previousEvent.id}}" class="previous-link"> <!-- 'previousNews'에서 'previousEvent'로 변경 -->
+              <a th:href="@{'/event/' + ${previousEvent.id}}" class="previous-link"> <!-- 'previousNews'에서 'previousEvent'로 변경 -->
                 <span th:text="${previousEvent.title}" class="previous-title">이전글 제목</span> <!-- 'previousNews'에서 'previousEvent'로 변경 -->
               </a>
             </div>

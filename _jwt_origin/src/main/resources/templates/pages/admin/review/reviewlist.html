@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>예약 현황</title>
+
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/admin/common.css}">
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/admin/reservation/reservationlist.css}">
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/admin/review/reviewdetailmodal.css}">
+  <script defer th:src="@{/js/pages/admin/review/reviewdetail.js}"></script>
+
+</head>
+
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="reservation-list">
+      <h2>예약 현황</h2>
+
+
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>제목</th>
+          <th>작성일</th>
+          <th>상세보기</th>
+          <th>등록확정</th>
+          <th>등록취소</th>
+          <th>등록여부</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 예약 목록을 반복해서 출력 -->
+        <tr th:each="review : ${reviewPage.content}">
+          <td th:text="${review.id}"></td> <!-- 번호 -->
+          <td th:text="${review.title}"></td>
+          <td th:text="${#temporals.format(review.createdAt, 'yyyy-MM-dd')}"></td> <!-- 작성일 -->
+          <!-- 상세보기 -->
+          <td>
+            <button type="button" class="edit-btn" th:data-review-id="${review.id}"
+                    th:data-review-name="${review.name}"
+                    th:data-review-treatment="${review.treatment}"
+                    th:data-review-phone="${review.phoneNumber}"
+                    th:data-review-email="${review.email}"
+                    th:data-review-content="${review.content}"
+                    onclick="openReviewDetailModal(this)">수정</button>
+          </td>
+          <td>
+            <!-- 예약 확정 버튼 -->
+            <form th:action="@{/review/confirm/{id}(id=${review.Id})}" method="post">
+              <button type="submit" th:disabled="${review.status == 'y'}">확정</button>
+            </form>
+          </td>
+          <td>
+            <!-- 예약 취소 버튼 -->
+            <form th:action="@{/review/cancel/{id}(id=${review.Id})}" method="post">
+              <button type="submit" th:disabled="${review.status == 'n'}">취소</button>
+            </form>
+          </td>
+          <td th:text="${review.status == 'y' ? '확정' : (review.status == 'n' ? '취소' : '대기')}"></td>
+        </tr>
+        </tbody>
+      </table>
+
+      <!-- 고객 수정 모달 -->
+      <div id="reviewEditModal" class="modal">
+        <div class="modal-content">
+          <span class="close-btn" id="closeEditModal">&times;</span>
+          <h3>고객 수정</h3>
+          <form action="#" method="post" id="customerUpdateForm">
+
+            <input type="hidden" id="editId" name="id">
+
+            <label for="editName">이름:</label>
+            <input type="text" id="editName" name="name" readonly>
+
+            <label for="editTreatment">치료:</label>
+            <input type="text" id="editTreatment" name="treatment" readonly>
+
+            <label for="editPhone">전화번호:</label>
+            <input type="text" id="editPhone" name="phonenumber" readonly>
+
+            <label for="editEmail">이메일:</label>
+            <input type="email" id="editEmail" name="email" readonly required>
+
+            <label for="editContent">내용:</label>
+            <textarea id="editContent" name="content" readonly required></textarea>
+
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+</th:block>
+</html>

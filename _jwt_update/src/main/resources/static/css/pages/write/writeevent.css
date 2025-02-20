@@ -84,54 +84,36 @@
 /* 파일첨부버튼 */
 /* --------------------------- */
 
-.file-upload-label {
-    height: 60px;
-    display: flex; /* flexbox로 설정 */
-    justify-content: center; /* 수평 중앙 정렬 */
-    align-items: center; /* 수직 중앙 정렬 */
-    background-color: #c75e5e;
-    color: white;
+/* 파일 입력 필드 기본 스타일링 */
+.input-item input[type="file"] {
+    width: 100%;
+    padding: 8px;
+    font-size: 1rem;
+    border: none;
+    background-color: white;
+    width: auto;
+}
+
+.file-label{
+    display: flex; /* 플렉스 박스 적용 */
+    align-items: center; /* 세로(수직) 중앙 정렬 */
+    justify-content: center; /* 가로(수평) 중앙 정렬 */
+    background: #c75e5e;
+    padding: 5px 0;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    text-align: center;
-    border: none;
-    margin-right: 10px; /* 버튼과 인풋 사이에 간격 */
-}
-
-#imageInput {
-    width: 250px;
-    margin-right: 10px; /* 파일 첨부 버튼과 간격을 주기 위한 마진 */
-}
-
-input[type="file"] {
-    display: none; /* 기본 파일 입력 숨기기 */
-}
-
-/* 파일 목록 스타일 */
-.file-list, .existingFiles-List {
-    display: flex;
-    margin-top: 10px;
-}
-
-
-.file-item {
-    color: #c75e5e;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    padding: 5px;
-}
-
-.file-item .delete-btn {
-    margin-left: 2px;
     color: white;
-    background-color: #c75e5e;
-    border: none;
-    padding: 3px 6px;
-    font-size: 12px;
-    cursor: pointer;
 }
+
+.file-input{
+    display: none;
+}
+
+
+
+
+
+
+
 
 .thumbnail-btn{
     margin-left: 2px;

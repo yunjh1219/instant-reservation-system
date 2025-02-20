@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+    <title>main homepage</title>
+    <!--공통-->
+    <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/community/commonness.css}">
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/commonness.js}"></script>
+    <!--개인-->
+    <link rel="stylesheet" th:inline="css"  th:href="@{/css/pages/write/writereview.css}">
+    <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/write/writereview.js}"></script>
+</head>
+<th:block layout:fragment="content">
+    <div class="content">
+        <div class="commu-header">
+            <div class="image-container">
+                <img src="/img/community/banner.jpg" alt="이미지 설명">
+            </div>
+            <nav class="commu-header-nav">
+                <ul>
+                    <li><a href="/event/list" class="#">이벤트</a></li>
+                    <li><a href="/news/list" class="#">피플소식</a></li>
+                    <li><a href="/review/list" class="active">시술후기</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="commu-title">
+            <h1>리뷰</h1>
+            <a>REVIEW</a>
+        </div>
+<!-- --- -->
+<!-- write 공간 -->
+<div class="post-body">
+    <div class="form-box">
+        <div class="reivewpost-form">
+
+            <form th:action="${review == null} ? '/review/submit' : '/review/update/' + ${review.id}"
+                 method="post" id="reivewpost-form" enctype="multipart/form-data">
+
+                <div class="reviewpost-container">
+
+                    <div class="input-group">
+                        <div class="input-item">
+                            <label for="title">제목</label>
+                            <input type="text" id="title" name="title" placeholder="제목(TITLE)"
+                                   th:value="${review != null} ? ${review.title} : ''" required>
+
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-item">
+                            <label for="title">이름</label>
+                            <input type="text" id="name" name="name" placeholder="이름(NAME)"
+                                   th:value="${review != null} ? ${review.name} : ''" required>
+                        </div>
+                        <div class="input-item">
+                            <label for="treatment">시술부위</label>
+                            <select id="treatment" name="treatment" required>
+                                <option value="1차 분류" selected>시술부위</option>
+                                <option value="브라질왁싱">브라질왁싱</option>
+                                <option value="바디왁싱">바디왁싱</option>
+                                <option value="페이스왁싱">페이스왁싱</option>
+                                <option value="임산부왁싱">임산부왁싱</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-item">
+                            <label for="title">휴대폰</label>
+                            <input type="text" id="phoneNumber" name="phoneNumber" placeholder="폰번호(phonenumber)"
+                                   th:value="${review != null} ? ${review.phoneNumber} : ''" required>
+                        </div>
+                        <div class="input-item">
+                            <label for="title">이메일</label>
+                            <input type="text" id="email" name="email" placeholder="이메일(email)"
+                                   th:value="${review != null} ? ${review.email} : ''" required>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="input-group">
+                        <div class="input-item">
+                          <textarea id="content" name="content" placeholder="소식 내용을 입력하세요"
+                                    th:text="${review != null} ? ${review.content} : ''" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="input-group no-flex">
+                        <div class="input-item">
+                            <label>파일첨부</label>
+                            <input type="text" id="imageInput" placeholder="최대 3개까지 업로드 가능합니다." readonly>
+                            <label for="image" class="file-upload-label">파일 첨부</label>
+                            <input type="file" id="image" name="image" accept="image/*" multiple style="display: none;">
+
+                            <p id="file-warning" style="color: red; display: none;"></p>
+                        </div>
+                        <!-- 첨부된 파일 목록 표시 -->
+                        <div class="input-item">
+                            <label></label>
+                            <div id="fileList" class="file-list"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="input-item submit-button-wrapper">
+                        <button type="submit" class="submit-button" id="submit-button"
+                                th:text="${review == null} ? '등록하기' : '수정하기'"></button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- --- -->
+
+</div>
+</div>
+</th:block>
+</html>

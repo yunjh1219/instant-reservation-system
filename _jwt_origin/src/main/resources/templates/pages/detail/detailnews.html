@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/default_layout}">
+<head>
+  <title>News Detail</title>
+  <!--공통-->
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/community/commonness.css}">
+  <link rel="stylesheet" th:inline="css" th:href="@{/css/pages/detail/commonness.css}">
+  <script th:inline="javascript" type="text/javascript" th:src="@{/js/pages/community/commonness.js}"></script>
+  <!--개인-->
+  <link rel="stylesheet" th:inline="css"  th:href="@{/css/pages/detail/detailnews.css}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+</head>
+<th:block layout:fragment="content">
+  <div class="content">
+    <div class="commu-header">
+      <div class="image-container">
+        <img src="/img/mmenu1/lgogo.jpg" alt="이미지 설명">
+      </div>
+      <nav class="commu-header-nav">
+        <ul>
+          <li><a href="/event/list" class="#">이벤트</a></li>
+          <li><a href="/news/list" class="active">피플소식</a></li>
+          <li><a href="/review/list" class="#">시술후기</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="commu-title">
+      <h1>소식</h1>
+      <a>NEWS</a>
+    </div>
+
+    <div class="board">
+      <div class="board-detail">
+
+        <div class="board-detail-top">
+
+          <div class="board-detail-top-one">
+            <span class="type">피플소식 </span>
+            <a class="title" th:text="${news.title}">제목</a>
+          </div>
+
+          <div class="board-detail-top-two">
+            <div class="one">
+              <i class="bi bi-clock"></i>
+              <span th:text="${#temporals.format(news.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span>
+            </div>
+            <div class="two">
+              <i class="bi bi-eye"></i>
+              <span th:text="${news.views}">조회수</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="board-detail-middle">
+          <div class="board-images">
+            <div th:each="image : ${news.imageUrls}">
+              <img th:src="@{${image}}" alt="이미지" />
+            </div>
+          </div>
+          <p th:text="${news.content}">내용</p>
+        </div>
+
+        <div class="board-detail-bottom">
+          <form th:action="@{/news/delete/{id}(id=${news.id})}" method="post" style="display:inline;">
+            <button type="submit" onclick="return confirm('정말로 이 게시글을 삭제하시겠습니까?');">삭제</button>
+          </form>
+          <a th:href="@{/news/edit/{id}(id=${news.id})}" class="back-link">수정</a>
+          <a href="/news/list" class="back-link">목록</a>
+        </div>
+
+        <div class="board-detail-footer">
+          <div class="board-detail-navigation">
+
+            <!-- 이전글 링크 (존재할 경우 표시) -->
+            <div class="navbotton" th:if="${nextNews != null}">
+              <a class="dots"> 다음글 ▲</a>
+              <a th:href="@{'/news/detail/' + ${nextNews.id}}" class="next-link">
+                <span th:text="${nextNews.title}" class="next-title">다음글 제목</span>
+              </a>
+            </div>
+
+            <!-- 다음글 링크 (존재할 경우 표시) -->
+            <div class="navbotton" th:if="${previousNews != null}">
+              <a class="dots"> 이전글 ▼</a>
+                <a th:href="@{'/news/detail/' + ${previousNews.id}}" class="previous-link">
+                  <span th:text="${previousNews.title}" class="previous-title">이전글 제목</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+</th:block>
+</html>

@@ -1,0 +1,87 @@
+.main-header{
+    position: relative;
+    display: flex;
+    flex-direction: column;      /* 세로 방향(수직) 정렬 */
+    width: 100%;
+}
+
+.header-imgcontainer{
+    padding: 30px 0;
+    height: 865px;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url("/img/main/main_logo_1.jpg"); /* 배경 이미지 설정 */
+    background-repeat: no-repeat; /* 이미지 반복 방지 */
+    background-position: center center; /* 이미지 가운데 정렬 */
+    background-size: cover; /* 배경 이미지가 섹션을 덮도록 설정 */
+
+    position: relative;
+
+    display: flex;               /* Flexbox 레이아웃 활성화 */
+    flex-direction: column;      /* 세로 방향(수직) 정렬 */
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 120px;
+}
+
+.information-container{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 네비게이션 */
+/*-------------*/
+.commu-header-nav {
+    position: absolute;
+    bottom: 0px; /* 네비게이션을 이미지 컨테이너의 하단에 위치 */
+    width: 100%; /* 네비게이션이 이미지 컨테이너의 너비를 가득 채우도록 설정 */
+    text-align: center;
+}
+
+.commu-header-nav ul {
+    display: flex; /* 수평 일열로 */
+    list-style: none;
+    justify-content: center;
+    padding: 0; /* 패딩 제거 */
+    margin: 0; /* 마진 제거 */
+}
+
+.commu-header-nav li {
+    margin: 0; /* 링크들 사이의 간격 제거 */
+}
+
+.commu-header-nav a {
+    width: 140px;
+    display: inline-block;
+    text-decoration: none;
+    background-color: rgba(51, 51, 51, 0.85);
+    color: rgba(255, 255, 255, 0.7); /* 70% 투명한 흰색 */
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 30px;
+    transition: all 0.3s;
+    margin: 0; /* 링크들 사이의 간격 제거 */
+    border-right: 0.2px solid grey;  /* 사이에 선 추가 */
+}
+
+.commu-header-nav li:last-child a {
+    border-right: none; /* 마지막 항목의 border-right 제거 */
+}
+
+/* 호버 스타일 */
+.commu-header-nav a:hover {
+    color: rgba(255, 255, 255, 0.9); /* 90% 투명한 흰색 */
+}
+
+.commu-header-nav a.active {
+    background-color: #f8f8f8;
+    color: rgba(30, 30, 30, 0.9);
+}
+
+.commu-header-nav a.active:hover {
+    background-color: #f8f8f8;
+    color: rgba(51, 51, 51, 1);
+}
+
+/*-------------*/
